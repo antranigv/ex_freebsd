@@ -133,7 +133,9 @@ defmodule FreeBSD do
   end
 
   def sample_file_contents do
-    project_root = Mix.Project.config() |> Keyword.fetch!(:app_path) |> to_string()
+    project_root =
+      Mix.Project.project_file()
+      |> Path.dirname()
 
     case freebsd_config() |> Map.get(:sample_env_file) do
       nil ->
